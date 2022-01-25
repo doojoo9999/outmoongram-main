@@ -1,4 +1,9 @@
-<h1>이 곳은 홈입니다.</h1>
+{% extends "base.html" %}
+{% block body %}
+
+<h1> {{request.user }} </h1>
+
+<button id="logout">Logout</buttion>
 
     <hr>
  {% for content in contetnts %}
@@ -11,7 +16,7 @@
     </pre>
     <b>By. {{ content.user.username }} </b>
     <hr>
-{% endfor %}
+    {% endfor %}
 
     <script>
         $(document).ready(function () {
@@ -22,3 +27,4 @@
         });
         });
     </script>
+{% endblock %}
