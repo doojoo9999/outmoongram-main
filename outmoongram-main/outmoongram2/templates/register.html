@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<h1>회원 가입</h1>
+    <input type = "text" id="username">
+    <input type = "text" id="email">
+    <input type = "password" id="password">
+    <button id = "register"> Register </button>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+
+  <script>
+$(document).ready(function () {
+$('#register').click(function() {
+    $.post('/apis/v1/users/create/', {'username': $('#username').val(), 'email': $('#email').val(), 'password': $('#password').val()}, function() {
+        alert('가입을 환영합니다!');
+        window.location = {% url 'login' %};
+    }).fail(function(data) {
+        alert(data.responseJSON.message);
+    });
+});
+});
+    </script>
+
+{% endblock %}

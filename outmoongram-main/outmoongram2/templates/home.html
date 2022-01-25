@@ -1,0 +1,24 @@
+<h1>이 곳은 홈입니다.</h1>
+
+    <hr>
+ {% for content in contetnts %}
+    {% for image in content.image_set.all %}
+        {{ image.order }}
+        <img src = "{{ image.image.url }}" width="200">
+    {% endfor %}
+    <pre>
+        {{ content.text }}
+    </pre>
+    <b>By. {{ content.user.username }} </b>
+    <hr>
+{% endfor %}
+
+    <script>
+        $(document).ready(function () {
+        $('#logout').click(function () {
+            $.get('/apis/v1/users/logout/', {}, function() {
+            location.reload();
+            });
+        });
+        });
+    </script>
